@@ -59,6 +59,7 @@ public class CountryListActivity extends AppCompatActivity {
                 });
 
                 builder.setNegativeButton(android.R.string.cancel,null);
+                builder.create().show();
                 return true;
             }
         });
