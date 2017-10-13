@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CountryList</string>
+    <string name="chosen">You\'ve chosen</string>
+    <string name="sure">Are you sure to delete</string>
+    <string name="erase">Erase</string>
 </resources>

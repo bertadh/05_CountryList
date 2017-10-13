@@ -1,5 +1,7 @@
 package edu.upc.eseiaat.pma.countrylist;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +37,7 @@ public class CountryListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(
                         CountryListActivity.this,
-                        String.format("You've chosen %s", country_list.get(position)),
+                        String.format(R.string.chosen + "%s", country_list.get(position)),
                         Toast.LENGTH_SHORT)
                 .show();
             }
@@ -43,9 +45,20 @@ public class CountryListActivity extends AppCompatActivity {
 
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                country_list.remove(position);
-                adapter.notifyDataSetChanged();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CountryListActivity.this);
+                String msg = getResources().getString(R.string.sure);
+                builder.setMessage(msg + getString(position)+ "?");
+
+                builder.setPositiveButton(R.string.erase, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        country_list.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton(android.R.string.cancel,null);
                 return true;
             }
         });
