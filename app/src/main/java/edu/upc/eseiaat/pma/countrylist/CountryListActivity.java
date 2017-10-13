@@ -37,9 +37,9 @@ public class CountryListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(
                         CountryListActivity.this,
-                        String.format(R.string.chosen + "%s", country_list.get(position)),
+                        String.format(getString(R.string.chosen) + " %s", country_list.get(position)),
                         Toast.LENGTH_SHORT)
-                .show();
+                        .show();
             }
         });
 
@@ -48,7 +48,7 @@ public class CountryListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CountryListActivity.this);
                 String msg = getResources().getString(R.string.sure);
-                builder.setMessage(msg + getString(position)+ "?");
+                builder.setMessage(msg + " " + country_list.get(position) + "?");
 
                 builder.setPositiveButton(R.string.erase, new DialogInterface.OnClickListener() {
                     @Override
